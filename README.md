@@ -8,7 +8,7 @@ A basic eCommerce with payment platform integration.
 - docker 
 - docker-compose
 
-You can install docker, Here (LINK)
+You can install docker [Here](https://docs.docker.com/install/)
 
 ## Clone project
 ```
@@ -19,11 +19,6 @@ git clone git@github.com:apolo96/evertec-exam.git && cd evertec-exam/
 
 These instructions assume OSX or Linux development environment. This project uses docker, which can be a bit quirky on Windows machines.
 
-
-### Copy dev environment file 
-``` 
-cp .env.dev .env 
-``` 
 
 ### Run app services
 
@@ -45,7 +40,15 @@ Enter in the `app` docker container.
 docker exec --user www -it app bash
 ```
 
-Once inside the container,  type this command.
+Once inside the container,
+
+Copy dev environment file. 
+
+``` 
+cp .env.dev .env 
+``` 
+
+And type this command:
 
 ```
 php artisan key:generate
