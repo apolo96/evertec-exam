@@ -33,5 +33,10 @@
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
+        <server name="PLACETOPAY_HOST" value="https://dev.placetopay.com/redirection/"/>
+        <server name="PLACETOPAY_LOGIN" value="6dd490faf9cb87a9862245da41170ff2"/>
+        <server name="PLACETOPAY_TRANKEY" value="024h1IlD"/>
+        <server name="PLACETOPAY_TP" value="rest"/>
+        <server name="APP_URL" value="http://localhost"/>
     </php>
 </phpunit>
