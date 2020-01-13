@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+
+  # PHP & Nginx Service
+  app:
+    image: apolo96/php-7.4-nginx:v1.0
+    container_name: app
+    restart: unless-stopped
+    depends_on:
+      - db
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www/html
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  # MySQL Service
+  db:
+    image: mysql:5.7
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: app
+      MYSQL_ROOT_PASSWORD: 1yourmysqlrootpassword1
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+
+  # Adminer Service
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - app-network
+
+# Docker Networks
+networks:
+  app-network:
+    driver: bridge
+
+# Volumes
+volumes:
+  dbdata:
+    driver: local
