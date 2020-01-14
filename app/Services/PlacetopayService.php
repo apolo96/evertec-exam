@@ -36,16 +36,23 @@ class PlacetopayService
 
     /**
      * Create payment request with body data
-     * @param $bodyData
+     * @param $orderId
      * @return RedirectResponse
      * @throws PlacetoPayException
      */
-    public function payment($bodyData)
+    public function payment($orderId)
     {
         $request = [
-            'payment' => $bodyData,
+            'payment' =>  [
+                'reference' => $orderId,
+                'description' => 'Bestseller eBook Payment',
+                'amount' => [
+                    'currency' => 'COP',
+                    'total' => 80000,
+                ],
+            ],
             'expiration' => date('c', strtotime('+2 days')),
-            'returnUrl' => env('APP_URL').'/response?reference='.$bodyData['reference'],
+            'returnUrl' => env('APP_URL').'/order/'.$orderId,
             'ipAddress' => '127.0.0.1',
             'userAgent' => 'Mozilla/5.0 (X11; Linux x86_64)',
         ];
