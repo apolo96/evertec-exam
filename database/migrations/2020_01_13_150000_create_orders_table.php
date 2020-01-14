@@ -19,8 +19,8 @@ class CreateOrdersTable extends Migration
             $table->string('customer_email',120);
             $table->string('customer_mobile',40);
             $table->string('status',20);
-            $table->string('pay_id');
-            $table->string('pay_process_url');
+            $table->string('pay_id')->nullable();
+            $table->string('pay_process_url')->nullable();
             $table->timestamps();
         });
     }
